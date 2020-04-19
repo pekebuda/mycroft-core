@@ -45,7 +45,7 @@ Do you wish to continue? (y/n)'
             ;;
         esac
     done
-    
+
 
 }
 function show_help() {
@@ -78,13 +78,11 @@ for var in "$@" ; do
         param=""
         continue
     fi
-
     # Check for options
     if [[ $var == '-h' || $var == '--help' ]] ; then
         show_help
         exit 0
     fi
-
     if [[ $var == '--clean' ]] ; then
         if clean_mycroft_files; then
             exit 0
@@ -92,18 +90,15 @@ for var in "$@" ; do
             exit 1
         fi
     fi
-    
-
     if [[ $var == '-r' || $var == '--allow-root' ]] ; then
         opt_allowroot=true
     fi
-
     if [[ $var == '-fm' ]] ; then
         opt_forcemimicbuild=true
     fi
+    # Do NOT exit on errors
     if [[ $var == '-n' || $var == '--no-error' ]] ; then
-        # Do NOT exit on errors
-	set +Ee
+        set +Ee
     fi
     if [[ $var == '-sm' ]] ; then
         opt_skipmimicbuild=true
