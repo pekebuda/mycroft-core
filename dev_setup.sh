@@ -60,7 +60,7 @@ Options:
     -n, --no-error          Do not exit on error (use with caution)
     -p arg, --python arg    Sets the python version to use
     -r, --allow-root        Allow to be run as root (e.g. sudo)
-    -sm                     Skip mimic build
+    -sm, --skip-mimic       Skip mimic build
 '
 }
 
@@ -100,7 +100,7 @@ for var in "$@" ; do
     if [[ $var == '-n' || $var == '--no-error' ]] ; then
         set +Ee
     fi
-    if [[ $var == '-sm' ]] ; then
+    if [[ $var == '-sm' || $var == '--skip-mimic' ]] ; then
         opt_skipmimicbuild=true
     fi
     if [[ $var == '-p' || $var == '--python' ]] ; then
