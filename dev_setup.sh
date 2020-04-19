@@ -56,17 +56,17 @@ Prepare your environment for running the mycroft-core services.
 Options:
     --clean                 Remove files and folders created by this script
     -h, --help              Show this message
-    -fm, --force-mimic      Force mimic build
     -n, --no-error          Do not exit on error (use with caution)
-    -p arg, --python arg    Sets the python version to use
     -r, --allow-root        Allow to be run as root (e.g. sudo)
+    -fm, --force-mimic      Force mimic build
     -sm, --skip-mimic       Skip mimic build
+    -p arg, --python arg    Sets the python version to use
 '
 }
 
 # Parse the command line
-opt_forcemimicbuild=false
 opt_allowroot=false
+opt_forcemimicbuild=false
 opt_skipmimicbuild=false
 opt_python=python3
 param=''
@@ -90,15 +90,15 @@ for var in "$@" ; do
             exit 1
         fi
     fi
+    # Do NOT exit on errors
+    if [[ $var == '-n' || $var == '--no-error' ]] ; then
+      set +Ee
+    fi
     if [[ $var == '-r' || $var == '--allow-root' ]] ; then
         opt_allowroot=true
     fi
     if [[ $var == '-fm' || $var == '--force-mimic']] ; then
         opt_forcemimicbuild=true
-    fi
-    # Do NOT exit on errors
-    if [[ $var == '-n' || $var == '--no-error' ]] ; then
-        set +Ee
     fi
     if [[ $var == '-sm' || $var == '--skip-mimic' ]] ; then
         opt_skipmimicbuild=true
