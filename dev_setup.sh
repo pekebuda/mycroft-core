@@ -56,7 +56,7 @@ Prepare your environment for running the mycroft-core services.
 Options:
     --clean                 Remove files and folders created by this script
     -h, --help              Show this message
-    -fm                     Force mimic build
+    -fm, --force-mimic      Force mimic build
     -n, --no-error          Do not exit on error (use with caution)
     -p arg, --python arg    Sets the python version to use
     -r, --allow-root        Allow to be run as root (e.g. sudo)
@@ -93,7 +93,7 @@ for var in "$@" ; do
     if [[ $var == '-r' || $var == '--allow-root' ]] ; then
         opt_allowroot=true
     fi
-    if [[ $var == '-fm' ]] ; then
+    if [[ $var == '-fm' || $var == '--force-mimic']] ; then
         opt_forcemimicbuild=true
     fi
     # Do NOT exit on errors
